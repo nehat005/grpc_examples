@@ -1,0 +1,21 @@
+syntax='proto3';
+
+option java_multiple_files = true;
+option java_package = "io.grpc.example.calculator";
+option java_outer_classname = "CalculatorProto";
+option objc_class_prefix = "CL";
+
+package calculator;
+
+service Calculate {
+  rpc Multiply (MultiplyRequest) returns (MultipliedReply) {}
+}
+
+message MultiplyRequest{
+  sint32 number_1 = 1;
+  sint32 number_2 = 2;
+}
+
+message MultipliedReply{
+  sint64 result = 1;
+}

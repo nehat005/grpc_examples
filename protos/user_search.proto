@@ -1,0 +1,29 @@
+
+syntax = "proto3";
+
+service UserSearch{
+//    rpc ListUsers(SearchRequest) returns (SearchResponse) {}
+    rpc ListUsersStreamRequestSingleResponse(stream SearchRequest) returns (SearchResponse) {}
+//    rpc ListUsersSingleRequestStreamResponse(SearchRequest) returns (stream SearchResponse) {}
+//    rpc ListUsersStreamRequestStreamResponse(stream SearchRequest) returns (stream SearchResponse) {}
+}
+
+message SearchRequest {
+  string query = 1;
+}
+
+message User{
+    message Address{
+        string city = 1;
+        string country = 2;
+    }
+    int32 user_id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    Address address = 4;
+}
+
+message SearchResponse{
+    int32 page_num = 1;
+    repeated User users = 2;
+}

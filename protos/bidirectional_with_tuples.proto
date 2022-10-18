@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package bidirectional;
+
+service Bidirectional {
+  // A Bidirectional streaming RPC.
+  //
+  // Accepts a stream of Message sent while a route is being traversed,
+   rpc SendDiarData(stream DataQueueRequest) returns (stream ReceivedMessage) {}
+}
+
+message DataList {
+  double timestamps = 1;
+}
+
+message DataQueueRequest {
+  DataList data = 1;
+}
+
+message ReceivedMessage {
+  string message = 1;
+}

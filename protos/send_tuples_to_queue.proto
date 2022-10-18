@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service SendData{
+    rpc SingleData(SendRequest) returns (SendResponse) {}
+    rpc SingleDataAgain(SendRequest) returns (SendResponse) {}
+}
+
+message SendRequest {
+    string request_message = 1;
+}
+
+message Queue{
+    message TimeData{
+        double timestamp = 1;
+        string speaker_id = 2;
+    }
+    TimeData data = 1;
+}
+
+message SendResponse{
+    Queue queues = 1;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service SendData{
+    rpc StreamData(SendRequest) returns (stream SendResponse) {}
+}
+
+message SendRequest {
+    string request_message = 1;
+}
+
+message Queue{
+    message TimeData{
+        double timestamp = 1;
+        double speaker_score = 2;
+        string speaker_name = 3;
+    }
+    TimeData data = 1;
+}
+
+message SendResponse{
+    Queue queues = 1;
+}
